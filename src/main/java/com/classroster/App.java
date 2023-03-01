@@ -10,16 +10,14 @@ import com.classroster.service.ClassRosterServiceLayerImpl;
 import com.classroster.ui.ClassRosterView;
 import com.classroster.ui.UserIO;
 import com.classroster.ui.UserIOConsoleImpl;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App {
 
     public static void main(String[] args) {
-        UserIO myIo = new UserIOConsoleImpl();
-        ClassRosterView myView = new ClassRosterView(myIo);
-        ClassRosterDao myDao = new ClassRosterDaoFileImpl();
-        ClassRosterAuditDao myAuditDao = new ClassRosterAuditDaoFileImpl();
-        ClassRosterServiceLayer myService = new ClassRosterServiceLayerImpl(myDao, myAuditDao);
-        ClassRosterController controller = new ClassRosterController(myView, myService);
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+        ClassRosterController controller = ctx.getBean("controller", ClassRosterController.class);
         controller.run();
     }
 }
