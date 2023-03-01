@@ -9,10 +9,8 @@ import java.util.List;
 
 public class ClassRosterServiceLayerImpl implements ClassRosterServiceLayer{
 
-
-    private ClassRosterDao dao;
+    ClassRosterDao dao;
     private ClassRosterAuditDao auditDao;
-
 
     public ClassRosterServiceLayerImpl(ClassRosterDao dao, ClassRosterAuditDao auditDao) {
         this.dao = dao;
